@@ -3,13 +3,13 @@
 git add .
 
 # Commit everything in one clean commit
-git commit -m "Initial commit: full JFectch project"
+git commit -m "Initial commit: full webpage"
 
 # Rename branch to main
 git branch -M main
 
 # Add remote
-git remote add origin https://github.com/AndronikosGl/JFectch.git
+git remote add origin https://github.com/AndronikosGl/MyPwp.git
 
 # Force push to GitHub (this overwrites everything there)
 git push -u origin main --force
