@@ -8,6 +8,7 @@ git commit -m "Initial commit: full webpage"
 # Rename branch to main
 git branch -M main
 
+git remote set-url origin https://github.com/AndronikosGl/MyPwp.git
 # Add remote
 git remote add origin https://github.com/AndronikosGl/MyPwp.git
 
