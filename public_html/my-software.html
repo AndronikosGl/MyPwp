@@ -162,6 +162,12 @@
                 top: 0;
                 z-index: 1001; /* Ensure top bar stays above other elements */
             }
+            .buttons-container {
+                display: flex;
+                align-items: center;
+                gap: 5px; /* controls distance between search & menu */
+                margin-right: 10px; /* keeps them slightly away from the right edge */
+            }
 
             .logo-text {
                 font-family: 'Arial', sans-serif;
@@ -170,7 +176,7 @@
                 color: black;
             }
 
-            .menu-button {
+            .menu-button, .search-button {
                 background: none;
                 position: relative;
                 border: none;
@@ -186,12 +192,12 @@
                 transition: background-color 0.3s ease;
             }
 
-            .menu-button:hover {
+            .menu-button:hover, .search-button:hover {
                 background-color: #00000d17;
 
                 /* Light gray hover background */
             }
-            .menu-button:after {
+            .menu-button:after, .search-button:after {
                 content: "";
                 position: absolute;
                 background: #5A5A5AB9; /* Ripple color */
@@ -210,13 +216,13 @@
                 transform: translate(-50%, -50%);
             }
 
-            .menu-button:active:after {
+            .menu-button:active:after, .search-button:active:after {
                 padding: 0;
                 margin: 0;
                 opacity: 1;
                 transition: 0s;
             }
-            .menu-button img {
+            .menu-button img, .search-button img {
                 width: 27px; /* Reduced size */
                 height: 27px; /* Reduced size */
             }
@@ -365,7 +371,7 @@
             #software2 a {
                 color: #3a4857; /* force override */
             }
-
+            
             .slideshow {
                 display: flex;
                 overflow-x: auto;
@@ -377,7 +383,8 @@
 
             .slideshow img {
                 height: 250px;     /* fixed height for all images */
-                width: auto;       /* automatic width to maintain aspect ratio */
+                width: auto;
+                max-width: 400px;/* automatic width to maintain aspect ratio */
                 background-color: white;
                 border-radius: 17px;
                 box-shadow: 0px 4px 12px rgba(0,0,0,0.35);
@@ -409,13 +416,18 @@
             <div class="logo-container">
                 <img src="logo.gif" alt="Ani" width="35"><img src="Logo.png" alt="Text logo" width="180">
             </div>
-            <button class="menu-button" onclick="toggleMenu()">
-                <img id="menuicon" src="menu.png" alt="Menu">
-            </button>
+            <div class="buttons-container">
+                <button class="search-button" onclick="search()">
+                    <img src="search.png" alt="Menu">
+                </button>
+                <button class="menu-button" onclick="toggleMenu()">
+                    <img id="menuicon" src="menu.png" alt="Menu">
+                </button>
+            </div>
         </div>
 
         <div id="topbarbg" class="top_bar_bg"></div>
-        
+
         <div id="top_bar_desktop" class="top_bar_desktop">
             <div class="logo-container">
                 <img src="logo.gif" alt="Ani" width="35">
@@ -426,6 +438,11 @@
                 <li id="software"><span class="material-symbols-outlined">code</span><a href="my-software.html">My Software</a></li>
                 <li><span class="material-symbols-outlined">verified</span><a href="certifications.html">Certifications</a></li>
                 <li><span class="material-symbols-outlined">more_up</span><a href="more.html">More</a></li>
+                <li id="sbnt" onclick="search()" style="cursor:pointer; color: #474747; font-weight: 700; font-size: 16px; font-family: 'Plus Jakarta Sans', sans-serif;">
+                    <span class="material-symbols-outlined">search</span>
+                    <span>Search...</span>
+                </li>
+
             </ul>
         </div>
     </div>
@@ -484,6 +501,29 @@
 
 
     <script>
+        function search() {
+            // Prompt user
+            const query = prompt("Search for project...");
+            if (!query)
+                return; // stop if cancelled or empty
+
+            // Find all h3s
+            const headings = document.querySelectorAll("h3");
+
+            let target = null;
+            headings.forEach(h3 => {
+                if (h3.innerText.toLowerCase().includes(query.toLowerCase())) {
+                    target = h3;
+                }
+            });
+
+            if (target) {
+                // Scroll instantly (no animation)
+                target.scrollIntoView({behavior: "auto", block: "start"});
+            } else {
+                alert("No project found with that name.");
+            }
+        }
         document.addEventListener("DOMContentLoaded", function () {
             const top_bar = document.querySelector(".top-bar");
             const top_bar_desktop = document.getElementById("top_bar_desktop");
