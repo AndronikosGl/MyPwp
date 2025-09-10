@@ -140,6 +140,7 @@
                 text-align: center;   /* αυτό τα κεντράρει */
                 gap:30px;
                 font-size: 13px;
+                margin-bottom: 70px;
             }
 
             body {
@@ -371,7 +372,7 @@
             #software2 a {
                 color: #3a4857; /* force override */
             }
-            
+
             .slideshow {
                 display: flex;
                 overflow-x: auto;
@@ -518,8 +519,9 @@
             });
 
             if (target) {
-                // Scroll instantly (no animation)
-                target.scrollIntoView({behavior: "auto", block: "start"});
+                const yOffset = -70; // adjust for top bar height
+                const y = target.getBoundingClientRect().top + window.scrollY + yOffset;
+                window.scrollTo({top: y, behavior: "auto"});
             } else {
                 alert("No project found with that name.");
             }
