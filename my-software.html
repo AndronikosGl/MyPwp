@@ -10,9 +10,31 @@
         <link rel="shortcut icon" type="image/x-icon" href="favicon.png">
         <style>
             html, body {
-                height: 100%;
-                margin: 0;
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: #f4f7fb;
+}
 
+           .content {
+    flex: 1; /* This pushes the footer down */
+    padding: 20px;
+    margin-top: 70px; /* adjust if needed for your top bar */
+}
+
+            * {
+                -webkit-tap-highlight-color: transparent;
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            .footer {
+                /* optional */
+                padding: 10px 20px;
+                text-align: center;
+                gap:30px;
+                font-size: 13px;
             }
             .top_bar {
                 display: none;
@@ -135,13 +157,7 @@
                 padding: 0;
                 box-sizing: border-box;
             }
-            .footer {
-                padding: 10px 20px;
-                text-align: center;   /* αυτό τα κεντράρει */
-                gap:30px;
-                font-size: 13px;
-                margin-bottom: 70px;
-            }
+
 
             body {
                 font-family: 'Plus Jakarta Sans', sans-serif;
@@ -330,11 +346,7 @@
                 display: flex;
             }
 
-            .content {
-                margin-top: 70px;
-                padding: 20px;
-                text-align: left;
-            }
+            
             .h3-link {
                 color: black;
                 display: inline-flex;
@@ -503,7 +515,15 @@
 
     <script>
         function search() {
-            // Prompt user
+            const isMobile = /Mobi|Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent);
+            if (isMobile) {
+        setTimeout(run, 340); // note: NO parentheses here
+    } else {
+        run();
+    }
+  
+    function run() {    
+                // Prompt user
             const query = prompt("Search for project...");
             if (!query)
                 return; // stop if cancelled or empty
@@ -519,12 +539,20 @@
             });
 
             if (target) {
-                const yOffset = -70; // adjust for top bar height
-                const y = target.getBoundingClientRect().top + window.scrollY + yOffset;
-                window.scrollTo({top: y, behavior: "auto"});
-            } else {
+    // Figure out which top bar is visible
+    let topbar = document.querySelector(".top-bar"); // mobile
+    let desktopbar = document.getElementById("top_bar_desktop"); // desktop
+    let activeBar = window.getComputedStyle(topbar).display !== "none" ? topbar : desktopbar;
+
+    let barHeight = activeBar ? activeBar.offsetHeight : 0;
+
+    // Scroll so the target is just below the bar
+    const y = target.getBoundingClientRect().top + window.scrollY - barHeight - 10; // -10px padding
+    window.scrollTo({ top: y, behavior: "smooth" });
+} else {
                 alert("No project found with that name.");
             }
+        } 
         }
         document.addEventListener("DOMContentLoaded", function () {
             const top_bar = document.querySelector(".top-bar");
@@ -585,6 +613,9 @@
                 });
             });
         }
+          document.addEventListener('contextmenu', function (e) {
+                e.preventDefault();
+            });
     </script>
 </body>
 </html>
