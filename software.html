@@ -5,6 +5,8 @@
         <meta property="og:description" content="My personal webpage, as a computer science student and Java Developer." />
         <meta property="og:image" content="thumbnail.jpg" />
         <meta property="og:type" content="website" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630"/>
         <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
         <meta charset="UTF-8">
@@ -14,18 +16,18 @@
         <link rel="shortcut icon" type="image/x-icon" href="favicon.png">
         <style>
             html, body {
-    height: 100%;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    background-color: #f4f7fb;
-}
+                height: 100%;
+                margin: 0;
+                display: flex;
+                flex-direction: column;
+                background-color: #f4f7fb;
+            }
 
-           .content {
-    flex: 1; /* This pushes the footer down */
-    padding: 20px;
-    margin-top: 70px; /* adjust if needed for your top bar */
-}
+            .content {
+                flex: 1; /* This pushes the footer down */
+                padding: 20px;
+                margin-top: 70px; /* adjust if needed for your top bar */
+            }
 
             * {
                 -webkit-tap-highlight-color: transparent;
@@ -350,7 +352,7 @@
                 display: flex;
             }
 
-            
+
             .h3-link {
                 color: black;
                 display: inline-flex;
@@ -521,42 +523,42 @@
         function search() {
             const isMobile = /Mobi|Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent);
             if (isMobile) {
-        setTimeout(run, 340); // note: NO parentheses here
-    } else {
-        run();
-    }
-  
-    function run() {    
-                // Prompt user
-            const query = prompt("Search for project...");
-            if (!query)
-                return; // stop if cancelled or empty
-
-            // Find all h3s
-            const headings = document.querySelectorAll("h3");
-
-            let target = null;
-            headings.forEach(h3 => {
-                if (h3.innerText.toLowerCase().includes(query.toLowerCase())) {
-                    target = h3;
-                }
-            });
-
-            if (target) {
-    // Figure out which top bar is visible
-    let topbar = document.querySelector(".top-bar"); // mobile
-    let desktopbar = document.getElementById("top_bar_desktop"); // desktop
-    let activeBar = window.getComputedStyle(topbar).display !== "none" ? topbar : desktopbar;
-
-    let barHeight = activeBar ? activeBar.offsetHeight : 0;
-
-    // Scroll so the target is just below the bar
-    const y = target.getBoundingClientRect().top + window.scrollY - barHeight - 10; // -10px padding
-    window.scrollTo({ top: y, behavior: "smooth" });
-} else {
-                alert("No project found with that name.");
+                setTimeout(run, 340); // note: NO parentheses here
+            } else {
+                run();
             }
-        } 
+
+            function run() {
+                // Prompt user
+                const query = prompt("Search for project...");
+                if (!query)
+                    return; // stop if cancelled or empty
+
+                // Find all h3s
+                const headings = document.querySelectorAll("h3");
+
+                let target = null;
+                headings.forEach(h3 => {
+                    if (h3.innerText.toLowerCase().includes(query.toLowerCase())) {
+                        target = h3;
+                    }
+                });
+
+                if (target) {
+                    // Figure out which top bar is visible
+                    let topbar = document.querySelector(".top-bar"); // mobile
+                    let desktopbar = document.getElementById("top_bar_desktop"); // desktop
+                    let activeBar = window.getComputedStyle(topbar).display !== "none" ? topbar : desktopbar;
+
+                    let barHeight = activeBar ? activeBar.offsetHeight : 0;
+
+                    // Scroll so the target is just below the bar
+                    const y = target.getBoundingClientRect().top + window.scrollY - barHeight - 10; // -10px padding
+                    window.scrollTo({top: y, behavior: "smooth"});
+                } else {
+                    alert("No project found with that name.");
+                }
+            }
         }
         document.addEventListener("DOMContentLoaded", function () {
             const top_bar = document.querySelector(".top-bar");
@@ -617,9 +619,9 @@
                 });
             });
         }
-          document.addEventListener('contextmenu', function (e) {
-                e.preventDefault();
-            });
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+        });
     </script>
 </body>
 </html>
