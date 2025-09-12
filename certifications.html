@@ -275,47 +275,19 @@
                     'opsz' 24
             }
             #certifications {
-                position: relative;     /* needed for ::before positioning */
-                border-radius: 30px;    /* keep pill shape */
-                overflow: hidden;       /* clip bg inside pill */
-            }
-            #certifications:hover {
-                background-color: transparent !important;
-            }
-            #certifications::before {
-                content: "";
-                position: absolute;
-                inset: 0; /* cover entire li */
-                background-color: #d3e3fd;
-                border-radius: 30px;
-                transform-origin: center;
-                transform: scaleX(0); /* start hidden */
-                animation: growBackground 0.3s ease-out forwards;
-                z-index: 0; /* stay behind text + icon */
-            }
-
-            /* ensure icon + text are above bg */
-            #certifications .material-symbols-outlined,
-            #certifications a {
-                position: relative;
-                z-index: 1;
+                text-decoration: none;
                 color: #3a4857;
+                background-color: #d5e4f7;
+                /*?????????????????????????*/
             }
-
-            @keyframes growHorizontal {
-                0% {
-                    transform: scaleX(0);
-
-                }
-                100% {
-                    transform: scaleX(1);
-
-                }
+            #certifications.material-symbols-outlined,
+            #certifications a {
+                color: #3a4857; /* force override */
             }
             #certifications2 {
                 text-decoration: none;
                 color: #3a4857;
-                background-color: #d5e4f7;
+                background-color: #d3e3fd;
                 /*?????????????????????????*/
             }
             #certifications2 .material-symbols-outlined,
