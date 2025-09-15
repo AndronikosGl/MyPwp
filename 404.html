@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta property="og:title" content="Andronikos Site" />
+        <meta property="og:description" content="My personal webpage, as a computer science student and Java Developer." />
+        <meta property="og:image" content="thumbnail.jpg" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630"/>
+        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Andronikos Site</title>
+        <link rel="icon" type="image/x-icon" href="favicon.png">
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.png">
+
+        <style>
+            html, body {
+                height: 100%;
+                margin: 0;
+            }
+            * {
+                -webkit-tap-highlight-color: transparent;
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                display: flex;
+                font-family: 'Plus Jakarta Sans', sans-serif;
+                background-color: #f4f7fb;
+                flex-direction: column;
+                color: #051f21;
+
+            }
+            .footer {
+                /* optional */
+                padding: 10px 20px;
+                text-align: center;
+                gap:30px;
+                font-size: 13px;
+            }
+            .top-bar {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding-left: 13px; /* Remove padding from top/bottom to ensure height consistency */
+                background-color: #dfe6ef;
+                box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.24);
+                position: fixed;
+                width: 100%;
+                height: 57px; /* Specify fixed height if necessary */
+                top: 0;
+                z-index: 1001; /* Ensure top bar stays above other elements */
+            }
+            .top_bar_desktop {
+                display: flex;
+                align-items: center;
+                padding-left: 20px;
+                background-color: #f8fafd;
+                border-radius: 50px;
+                box-shadow: 0px 1px 2px 0px rgb(0 0 0 / 30%), 0px 1px 3px 1px rgb(0 0 0 / 15%);
+                position: fixed;
+                width: calc(100% - 120px);
+                height: 57px;
+                top: 10px;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: 1001;
+            }
+
+            .top_bar_desktop ul {
+                display: flex;
+                flex: 1;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                height: 100%;
+            }
+
+            .top_bar_desktop ul li {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex: 1;
+                gap: 6px;
+                border-radius: 30px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+                height: 100%;
+            }
+
+            .top_bar_desktop ul li a {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                text-decoration: none;
+                color: #474747;
+                font-weight: 700;
+                font-size: 16px;
+            }
+
+            .top_bar_desktop ul li:hover {
+                background-color: #d8e0e0;
+            }
+
+            .top_bar_desktop .logo-container {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                margin-right: 20px;
+                padding-right: 20px;
+                border-right: 1px solid #ccc;
+            }
+
+            .logo-text {
+                font-family: 'Arial', sans-serif;
+                font-weight: 300;
+                font-size: 24px;
+                color: black;
+            }
+
+            .menu-button {
+                background: none;
+                position: relative;
+                border: none;
+                cursor: pointer;
+                height: 45px; /* Ensure it matches the height of the top bar */
+                width: 45px; /* Set width to 55% of the top bar height */
+                overflow: hidden;
+                border-radius: 90px;
+                display: flex;              /* enable flex */
+                align-items: center;        /* vertical centering */
+                justify-content: center;
+                margin-right: 5px;
+                transition: background-color 0.3s ease;
+            }
+
+            .menu-button:hover {
+                background-color: #00000d17;
+
+                /* Light gray hover background */
+            }
+            .menu-button:after {
+                content: "";
+                position: absolute;
+                background: #5A5A5AB9; /* Ripple color */
+                display: block;
+                padding-top: 300%;
+                padding-left: 350%;
+                width: 20px; /* Controls size of the ripple */
+                height: 20px;
+                margin-left: -23px !important;
+                margin-top: 20%;
+                opacity: 0;
+                top: 50%;
+                left: 90%;
+                transition: all 0.8s;
+                border-radius: 200px;
+                transform: translate(-50%, -50%);
+            }
+
+            .menu-button:active:after {
+                padding: 0;
+                margin: 0;
+                opacity: 1;
+                transition: 0s;
+            }
+            .menu-button img {
+                width: 27px; /* Reduced size */
+                height: 27px; /* Reduced size */
+            }
+
+            .backdrop {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                opacity: 0;
+                visibility: hidden;
+                transition: opacity 0.3s ease, visibility 0.3s ease;
+                z-index: 1002; /* Backdrop under the top bar */
+            }
+
+            .backdrop.open {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .side-menu {
+                position: fixed;
+                top: 0px; /* Adjusted to fit the new top bar height */
+                right: -304px;
+                width: 300px;
+                height: 100%;
+                overflow: hidden;
+                border-bottom-left-radius: 29px;/* Adjust height to make it taller */
+                border-top-left-radius: 29px;
+                background-color: #ebf0f6;
+                margin-bottom: 15px;
+                transition: right 0.3s ease;
+                z-index: 10000;
+                padding: 20px;
+
+            }
+
+            .side-menu.open {
+                right: 0;
+            }
+            .logo-container{
+                display: flex;
+                align-items: center;
+                gap: 5px;
+            }
+
+            .side-menu ul {
+                list-style: none;
+
+            }
+            .side-menu ul li:hover {
+                border-radius: 30px;
+                background-color: #00000012;
+                width: calc(100% + 90px);
+                transition: background-color 0.3s ease;
+            }
+            .side-menu ul li:active {
+                outline: none;
+
+
+
+            }
+
+
+
+            .side-menu ul li a {
+                text-decoration: none;
+                color: #474747;
+                display: block;
+                font-size: 18px;
+                width: calc(100% + 90px);
+                height: 100%;
+                padding-top: 2px;
+                padding-left: 10px;
+                box-sizing: bord7er-box;
+                font-weight: 700;
+                display: inline-block;
+
+            }
+
+            .side-menu ul li {
+                position: relative;
+                overflow: hidden;
+                margin: 0px 0;
+                font-size: 16px;
+                width: calc(100% + 90px);
+                padding: 5px 0;
+                box-sizing: border-box;
+                cursor: pointer;
+                border-radius: 30px;
+                transition: background-color 0.3s ease;
+                margin-bottom: 8px;
+                gap: -12px;
+                padding: 15px 16px;
+                display: flex;
+            }
+
+            .material-symbols-outlined{
+                color: #474747;
+                font-variation-settings:                      'FILL' 1,
+                    'wght' 600,
+                    'GRAD' 0,
+                    'opsz' 24
+            }
+
+
+            #social1{
+                border-radius: 8px;
+            }
+            #social2{
+                border-radius: 8px;
+            }
+            .content {
+                opacity: 0;
+                animation: fadeIn 0.2s ease-out forwards;
+                animation-delay: 0.2s;
+                flex: 1; /* pushes footer down */
+                display: flex; /* enable flexbox */
+                justify-content: center; /* horizontal centering */
+                align-items: center; /* vertical centering */
+                padding: 20px;
+                margin-top: 70px; /* leave space for top bar */
+                flex-direction: column; /* optional if you have text under the image later */
+            }
+
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                }
+                to {
+                    opacity: 1;
+                }
+            }
+            .ripple {
+                position: absolute;
+                border-radius: 50%;
+                background: rgba(90, 90, 90, 0.3);
+                transform: scale(0);
+                animation: rippleAnim 0.6s linear;
+                pointer-events: none;
+            }
+            @keyframes rippleAnim {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+            .top_bar_desktop ul li {
+                position: relative;
+                overflow: hidden; /* για να μην ξεφεύγει το ripple */
+            }
+
+
+        </style>
+    </head>
+    <body>
+
+        <div class="top-bar">
+            <div class="logo-container">
+                <img src="logo.gif" alt="Ani" width="35"><img src="Logo.png" alt="Text logo" width="180" left="0px">
+            </div>
+            <button class="menu-button" onclick="toggleMenu()">
+                <img id= "menuicon" src="menu.png" alt="Menu Icon" oncontextmenu="return false;">
+            </button>
+        </div>
+        <div id="top_bar_desktop" class="top_bar_desktop">
+            <div class="logo-container">
+                <img src="logo.gif" alt="Ani" width="35" draggable="false">
+                <img src="Logo.png" alt="Text logo" width="180" draggable="false">
+            </div>
+            <ul>
+                <li>
+                    <span class="material-symbols-outlined">home</span>
+                    <a href="home.html">Home page</a>
+                </li>
+                <li>
+                    <span class="material-symbols-outlined">code</span>
+                    <a href="software.html">My Software</a>
+                </li>
+                <li>
+                    <span class="material-symbols-outlined">verified</span>
+                    <a href="certifications.html">Certifications</a> 
+                </li>
+                <li>
+                    <span class="material-symbols-outlined">more_up</span>
+                    <a href="more.html">More</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="backdrop" id="backdrop" onclick="toggleMenu()"></div>
+
+        <div class="side-menu" id="sideMenu">
+            <ul>
+                <li>
+                    <span class="material-symbols-outlined">home</span><a href="home.html">Home page</a>
+
+                </li>
+                <li>
+                    <span class="material-symbols-outlined">code</span> <a href="software.html">My Software</a>
+
+                </li>
+                <li>
+                    <span class="material-symbols-outlined">verified</span> <a href="certifications.html">Certifications</a> 
+                </li>
+                <li id="more">
+                    <span class="material-symbols-outlined">more_up</span> <a href="more.html">More</a>
+
+                </li>
+
+            </ul>
+        </div>
+
+        <div class="content">
+            <img src="404.png" alt="This page is under construction" width="350">
+        </div>
+        <div class="footer">
+            <div class="footer-icons">
+                <a href="https://github.com/AndronikosGl" target="_blank">
+                    <img id="social1" src="github.png" alt="GitHub" width="35px"/>
+                </a>&nbsp;
+                <a href="https://www.linkedin.com/in/ανδρόνικος-γλαρός-576549365" target="_blank">
+                    <img id="social2" src="linkedin.png" alt="LinkedIn" width="35px"/>
+                </a>
+            </div>
+            <p>© 2025 Andronikos Glaros. All rights reserved.</p>
+        </div>
+        <script>
+
+            document.addEventListener('contextmenu', function (e) {
+                e.preventDefault();
+            });
+            document.addEventListener("DOMContentLoaded", function () {
+                const top_bar = document.querySelector(".top-bar");
+                const top_bar_desktop = document.getElementById("top_bar_desktop");
+
+                if (/Mobi|Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent)) {
+                    top_bar.style.display = "flex";
+                    top_bar_desktop.style.display = "none";
+                } else {
+                    top_bar.style.display = "none";
+                    top_bar_desktop.style.display = "flex";
+                }
+            });
+            function isMobileDevice() {
+                console.log(navigator.userAgent);
+                return /Mobi|Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent);
+
+            }
+            function toggleMenu() {
+                const Icon = document.getElementById("menuicon");
+                const menu = document.getElementById('sideMenu');
+                const backdrop = document.getElementById('backdrop');
+                const isOpen = menu.classList.toggle('open');
+                if (isOpen) {
+                    Icon.src = "X.png";
+                } else {
+                    Icon.src = "menu.png";
+                }
+                backdrop.classList.toggle('open', isOpen);
+
+            }
+            document.querySelectorAll(".top_bar_desktop ul li a, .side-menu ul li a").forEach(link => {
+                link.addEventListener("click", function (e) {
+                    e.preventDefault(); // Σταματάμε το default redirect
+
+                    const li = this.closest("li");
+
+                    // Δημιουργία ripple
+                    const ripple = document.createElement("span");
+                    ripple.classList.add("ripple");
+
+                    // Υπολογισμός μεγέθους ripple (ίσο με το μεγαλύτερο dimension του li)
+                    const rect = li.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    ripple.style.width = ripple.style.height = size + "px";
+
+                    // Θέση ripple στο click point
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+                    ripple.style.left = x + "px";
+                    ripple.style.top = y + "px";
+
+                    li.appendChild(ripple);
+
+                    // Αφαίρεση ripple μετά το animation
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+
+                    // Redirect μετά από 240ms
+                    const href = this.getAttribute("href");
+                    if (isMobileDevice()) {
+                        setTimeout(() => {
+                            window.location.href = href;
+                        }, 120);
+                    } else {
+                        setTimeout(() => {
+                            window.location.href = href;
+                        }, 300);
+                    }
+
+                });
+            });
+        </script>
+
+    </body>
+</html>
