@@ -664,7 +664,7 @@
                     let barHeight = activeBar ? activeBar.offsetHeight : 0;
 
                     // Scroll so the target is just below the bar
-                    const y = target.getBoundingClientRect().top + window.scrollY - barHeight - 10; // -10px padding
+                    const y = target.getBoundingClientRect().top + window.scrollY - barHeight - 5; // -10px padding
                     window.scrollTo({top: y, behavior: "smooth"});
                 } else {
                     alert("No project found with that name.");
