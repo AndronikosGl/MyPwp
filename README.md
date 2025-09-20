@@ -1,3 +1,3 @@
-This is my personal webpage. You are not allowed to clone this repository without my explicit permition
-To visit my webpage, [Click here](https://andronikos.dev)
-Copyright Andronikos Glaros 2025 
+This is my personal webpage.<br>You are not allowed to clone this repository without my explicit permition
+<br>To visit my webpage, [Click here](https://andronikos.dev)
+<br>Copyright Andronikos Glaros 2025 
