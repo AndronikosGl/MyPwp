@@ -1,3 +1,5 @@
-This is my personal webpage.<br>You are not allowed to clone this repository without my explicit permition
-<br>To visit my webpage, [Click here](https://andronikos.dev)
-<br>To view license of this repo [Click here](https://github.com/AndronikosGl/MyPwp/blob/main/LICENSE) or open the LICENSE file
+This is my personal webpage.<br>You are not allowed to clone this repository without my explicit permission
+
+#Options
+<br>[Visit webpage](https://andronikos.dev)
+<br>[View LICENSE] (https://github.com/AndronikosGl/MyPwp/blob/main/LICENSE) or open the LICENSE file
