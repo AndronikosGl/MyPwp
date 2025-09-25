@@ -645,7 +645,13 @@
                     });
                 });
             });
-           
+           window.addEventListener("load", () => {
+      // Only proceed if notifications are allowed AND we haven't shown it yet
+      if (Notification.permission === "granted" && !localStorage.getItem("notified")) {
+        new Notification("🚀 New project ahead, stay tuned!");
+        localStorage.setItem("notified", "true"); // mark as shown
+      }
+    });
         </script>
 
     </body>
