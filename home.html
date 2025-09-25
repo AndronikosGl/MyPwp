@@ -530,7 +530,6 @@
 
             </div>
             <p>© 2025 Andronikos Glaros. All rights reserved. </p>
-            <a href="#" id="notifyLink">Enable homepage notifications</a>
         </div>
 
         <script>
@@ -646,21 +645,7 @@
                     });
                 });
             });
-           document.getElementById("notifyLink").addEventListener("click", (e) => {
-    e.preventDefault();
 
-    // Request permission
-    alert("If you are interested in receiving push notifications for upcoming projects uppon visiting the home page of my site, select accept (We never notify users in the background)")
-    Notification.requestPermission().then(permission => {
-        if (permission === "granted") {
-            // Show one-time notification if not already shown
-            if (!localStorage.getItem("notified")) {
-                new Notification("🚀 New project ahead, stay tuned!");
-                localStorage.setItem("notified", "true");
-            }
-        } 
-    });
-});
         </script>
 
     </body>
