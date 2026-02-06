@@ -397,6 +397,27 @@
                 transition: all 0.3s ease; /* ή 0.5s αν θες πιο smooth */
                 z-index: 0; /* κάτω από τα li */
             }
+             .credly-scroll {
+			  display: flex;
+			  gap: 1rem;
+			  overflow-x: auto;
+			  overflow-y: hidden;
+			  padding: 1rem 0;
+			  scroll-snap-type: x mandatory;
+			  }
+
+			/* smooth swipe */
+			.credly-scroll > div {
+		    scroll-snap-align: start;
+		    flex: 0 0 auto;
+            }
+
+			/* desktop behavior */
+			@media (hover: hover) and (pointer: fine) {
+ 				 .credly-scroll {
+    			overflow-x: visible;
+ 			 }
+			}
 
         </style>
     </head>
@@ -462,13 +483,20 @@
         <div class="content">
             <h3 id="sp"><b>My certifications</b></h3>
             <br>
+            <br>
+            <h4><b>Cisco and NDG</b></h4>
+            <div class="credly-scroll">
             <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="485f0c6b-128b-4812-87e7-f93ab7c8025f" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
             <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="1fd34ce4-ce5b-4384-9fce-71af7d0ba9df" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
             <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="73d41d25-26f2-4f8a-b14b-82c63dc084fc" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
-    		<a href="https://www.sololearn.com/certificates/CC-KMPHZ0MU" target="_blank" style="text-decoration: none;">
-              <img src="certjavaintro.png" height="243" style="position: relative; top: -28px;">
+    		</div>
+            <br>
+            <h4><b>SoloLearn</b></h4>
+            <br>
+            <a href="https://www.sololearn.com/certificates/CC-KMPHZ0MU" target="_blank" style="text-decoration: none;">
+              <img src="certjavaintro.png" height="243">
             </a>
-
+			
 
             </div>
         <div class="footer">
