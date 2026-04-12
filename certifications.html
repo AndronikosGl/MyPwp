@@ -418,7 +418,15 @@
     			overflow-x: visible;
  			 }
 			}
-
+			.top_bar_bg {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 77px; /* slightly taller than .top_bar_desktop (57px + top:10px) */
+                background-color: #f4f7fb; /* same as body */
+                z-index: 1000; /* just under .top_bar_desktop */
+            }
         </style>
     </head>
     <body>
@@ -431,6 +439,7 @@
                 <img id= "menuicon" src="menu.png" alt="Menu Icon" oncontextmenu="return false;">
             </button>
         </div>
+		<div id="topbarbg" class="top_bar_bg"></div>
         <div id="top_bar_desktop" class="top_bar_desktop">
             <div class="logo-container">
                 <img src="logo.gif" alt="Ani" width="35" draggable="false">
