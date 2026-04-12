@@ -2,7 +2,7 @@
 This is my personal webpage.  
 You are not allowed to clone this repository without my explicit permission.
 
-## ↖️ Quick Actions
+## 👉 Quick Actions
 <img src="vlg.png"></img>
 <p>
   <a href="https://andronikos.dev">
