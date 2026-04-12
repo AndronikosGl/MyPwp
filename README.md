@@ -3,7 +3,7 @@ This is my personal webpage.
 You are not allowed to clone this repository without my explicit permission.
 
 ## Quick Actions
-<img src="vg.png"></img>
+<img src="vlg.png"></img>
 <p>
   <a href="https://andronikos.dev">
     <img src="vw.png">
